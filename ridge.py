@@ -10,9 +10,9 @@ class Ridge:
         self.alpha = alpha
         self.intercept = intercept
 
-    def fit(self, X, y) -> None:
+    def fit(self, X: np.array[float], y: np.array[float]) -> None:
 
-        X_input = X
+        X_input = np.copy(X)
 
         if self.intercept:
             X_input = np.c_[np.ones((X_input.shape[0], 1)), X_input]
@@ -28,7 +28,9 @@ class Ridge:
 
         self.weights = np.dot(inner_term, outer_term)
 
-    def predict(self, X_input):
+    def predict(self, X: np.array[float]) -> np.array[float]:
+
+        X_input = np.copy(X)
 
         if self.intercept:
             X_input = np.c_[np.ones((X_input.shape[0], 1)), X_input]
